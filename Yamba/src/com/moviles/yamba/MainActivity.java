@@ -17,6 +17,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import com.moviles.yamba.clientlib.YambaClient;
+import com.moviles.yamba.clientlib.YambaClientException;
 
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -26,7 +28,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button buttonTweet;
 	private TextView textCount; 
 	private int defaultTextColor;
-	Twitter twitter;
+	//Twitter twitter;
 		
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,10 +41,10 @@ public class MainActivity extends Activity implements OnClickListener {
         
         buttonTweet.setOnClickListener(this);
         
-        Log.d(TAG, "Create twitter object");
-        twitter = new Twitter("student","password");
-        twitter.setAPIRootUrl("http://yamba.marakana.com/api");
-        Log.d(TAG, "Set twitter object API root URL");
+        //Log.d(TAG, "Create twitter object");
+        //twitter = new Twitter("student","password");
+        //twitter.setAPIRootUrl("http://yamba.marakana.com/api");
+        //Log.d(TAG, "Set twitter object API root URL");
         
         defaultTextColor = textCount.getTextColors().getDefaultColor(); //
         editStatus.addTextChangedListener(new TextWatcher(){ //
@@ -66,8 +68,6 @@ public class MainActivity extends Activity implements OnClickListener {
         			}
         });
         			
-        		
-        
     }
     
     public void onClick(View View){	
@@ -78,25 +78,32 @@ public class MainActivity extends Activity implements OnClickListener {
     
     
     private final class PostTask extends AsyncTask<String, Integer, String> { 
-    @Override
-    	protected String doInBackground(String... statuses) { 
+       	
+    	protected String doInBackground(String... params) { 
     	
+    		YambaClient yambaCloud = new YambaClient("student", "password");
+    		
     		try {
-    			Twitter.Status status= twitter.updateStatus(statuses[0]); 
-    			return status.text;
-    		} catch (TwitterException e) {
+    			//Twitter.Status status= twitter.updateStatus(statuses[0]); 
+    			yambaCloud.postStatus(params[0]);
+    			return "Successfully posted";
+    		} catch(YambaClientException e) {
+    			e.printStackTrace();
+    			return "Failed to post to yamba service"; 
+    		
+    		/*(TwitterException e) {
     			Log.e(TAG, e.toString());
     			e.printStackTrace();
-    			return "Failed to post to yamba service";
+    			return "Failed to post to yamba service";*/
     		}
     	}
     
-    protected void onProgressUpdate(Integer... values) {
+       	protected void onProgressUpdate(Integer... values) {
     	super.onProgressUpdate(values);
     }
     
-    @Override
-    	protected void onPostExecute(String result) {
+       	protected void onPostExecute(String result) {
+       		super.onPostExecute(result);
     		Toast.makeText(MainActivity.this, result, Toast.LENGTH_LONG).show(); 
     	}
     }	
@@ -108,9 +115,6 @@ public class MainActivity extends Activity implements OnClickListener {
         return true;
     }
     
-    
-    
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -123,6 +127,4 @@ public class MainActivity extends Activity implements OnClickListener {
         return super.onOptionsItemSelected(item);
     }
 
-
-    
 }
