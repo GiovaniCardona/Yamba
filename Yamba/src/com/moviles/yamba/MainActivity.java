@@ -1,7 +1,5 @@
 package com.moviles.yamba;
 
-import winterwell.jtwitter.Twitter;
-import winterwell.jtwitter.TwitterException;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.AsyncTask;
@@ -17,8 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.moviles.yamba.clientlib.YambaClient;
-import com.moviles.yamba.clientlib.YambaClientException;
+
+import com.marakana.android.yamba.clientlib.YambaClient;
+import com.marakana.android.yamba.clientlib.YambaClientException;
 
 
 public class MainActivity extends Activity implements OnClickListener {
