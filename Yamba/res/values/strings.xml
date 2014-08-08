@@ -6,6 +6,7 @@
     <string name="action_settings">Settings</string>
     <string name="hint_status">What\'s going on?</string>
     <string name="button_tweet">Tweet</string>
-
+	<string name="size">140</string>
+    
 </resources>
 

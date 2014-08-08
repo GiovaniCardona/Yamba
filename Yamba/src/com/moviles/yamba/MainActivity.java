@@ -27,7 +27,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	private Button buttonTweet;
 	private TextView textCount; 
 	private int defaultTextColor;
-	//Twitter twitter;
+	
 		
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +40,13 @@ public class MainActivity extends Activity implements OnClickListener {
         
         buttonTweet.setOnClickListener(this);
         
-        //Log.d(TAG, "Create twitter object");
-        //twitter = new Twitter("student","password");
-        //twitter.setAPIRootUrl("http://yamba.marakana.com/api");
-        //Log.d(TAG, "Set twitter object API root URL");
-        
-        defaultTextColor = textCount.getTextColors().getDefaultColor(); //
-        editStatus.addTextChangedListener(new TextWatcher(){ //
+        defaultTextColor = textCount.getTextColors().getDefaultColor(); 
+        editStatus.addTextChangedListener(new TextWatcher(){ 
         			
         	public void afterTextChanged(Editable s) { 
-        		int count = 140 - editStatus.length(); //
+        		int count = 140 - editStatus.length(); 
         		textCount.setText(Integer.toString(count));
-        		textCount.setTextColor(Color.BLUE); //
+        		textCount.setTextColor(Color.BLUE); 
         		if ((count < 25) && (9 < count))
         			textCount.setTextColor(Color.GRAY);
         		else if (count < 10)
@@ -60,10 +55,10 @@ public class MainActivity extends Activity implements OnClickListener {
         			textCount.setTextColor(defaultTextColor);
         	}
         			
-        	public void beforeTextChanged(CharSequence s, int start, int count, int after) { //
+        	public void beforeTextChanged(CharSequence s, int start, int count, int after) { 
         			}
         			
-        	public void onTextChanged(CharSequence s,int start, int before, int count) { //
+        	public void onTextChanged(CharSequence s,int start, int before, int count) { 
         			}
         });
         			
@@ -83,17 +78,12 @@ public class MainActivity extends Activity implements OnClickListener {
     		YambaClient yambaCloud = new YambaClient("student", "password");
     		
     		try {
-    			//Twitter.Status status= twitter.updateStatus(statuses[0]); 
     			yambaCloud.postStatus(params[0]);
     			return "Successfully posted";
     		} catch(YambaClientException e) {
     			e.printStackTrace();
     			return "Failed to post to yamba service"; 
     		
-    		/*(TwitterException e) {
-    			Log.e(TAG, e.toString());
-    			e.printStackTrace();
-    			return "Failed to post to yamba service";*/
     		}
     	}
     
