@@ -1,10 +1,14 @@
 package com.moviles.yamba;
 
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -28,6 +32,7 @@ public class StatusFragment extends Fragment implements OnClickListener {
 	private Button buttonTweet;
 	private TextView textCount; 
 	private int defaultTextColor;
+	SharedPreferences prefs;
 	
 		
     @Override
@@ -81,7 +86,19 @@ public class StatusFragment extends Fragment implements OnClickListener {
        	
     	@Override
     	protected String doInBackground(String... params) { 
+    		try{
+    			SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity()); 
+    			String username = prefs.getString("username", ""); //
+    			String password = prefs.getString("password", "");
+    			  				
+    			if (TextUtils.isEmpty(username) || TextUtils.isEmpty(password)) { //
+    				getActivity().startActivity(
+    				new Intent(getActivity(), SettingsActivity.class));
+    				return "Please update your username and password";
+    			}
+    		
     		YambaClient yambaCloud = new YambaClient("student", "password");
+    		
     		try {
     			yambaCloud.postStatus(params[0]);
     			return "Successfully posted";
@@ -89,7 +106,9 @@ public class StatusFragment extends Fragment implements OnClickListener {
     			e.printStackTrace();
     			return "Failed to post to yamba service"; 
     		}
-    	}
+       	}
+    		finally{}
+    }
     
     	@Override
        	protected void onPostExecute(String result) {
