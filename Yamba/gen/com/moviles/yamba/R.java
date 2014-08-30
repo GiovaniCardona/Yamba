@@ -26,13 +26,15 @@ public final class R {
         public static final int ic_launcher=0x7f020001;
     }
     public static final class id {
-        public static final int action_purge=0x7f090007;
-        public static final int action_refresh=0x7f090006;
+        public static final int action_purge=0x7f090009;
+        public static final int action_refresh=0x7f090008;
         public static final int action_settings=0x7f090004;
-        public static final int action_tweet=0x7f090005;
+        public static final int action_tweet=0x7f090007;
         public static final int buttonTweet=0x7f090000;
         public static final int editStatus=0x7f090002;
         public static final int fragment_status=0x7f090003;
+        public static final int itemPrefs=0x7f090005;
+        public static final int itemServiceStart=0x7f090006;
         public static final int textCount=0x7f090001;
     }
     public static final class layout {
@@ -43,7 +45,8 @@ public final class R {
     }
     public static final class menu {
         public static final int main=0x7f080000;
-        public static final int principal=0x7f080001;
+        public static final int menu=0x7f080001;
+        public static final int principal=0x7f080002;
     }
     public static final class string {
         public static final int action_settings=0x7f060002;
@@ -59,6 +62,8 @@ public final class R {
         public static final int purge=0x7f06000f;
         public static final int refresh=0x7f06000e;
         public static final int textcount=0x7f060005;
+        public static final int titlePrefs=0x7f060010;
+        public static final int titleRefresh=0x7f060011;
         public static final int title_activity_principal=0x7f06000c;
         public static final int username=0x7f060006;
         public static final int username_summary=0x7f060007;

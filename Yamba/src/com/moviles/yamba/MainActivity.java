@@ -1,8 +1,10 @@
 package com.moviles.yamba;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class MainActivity extends Activity {
 
@@ -23,5 +25,17 @@ public class MainActivity extends Activity {
         return true;
     }
     
-    
+    public boolean onOptionsItemSelected(MenuItem item) {
+    	switch (item.getItemId()) {    	
+    		case R.id.itemServiceStart:
+    			startService(new Intent(this, RefreshService.class)); //
+    		break;
+    		case R.id.itemPrefs:
+    			startActivity(new Intent(this, SettingsActivity.class));
+    		break;
+    		default:
+    			return false;
+    	}
+    	return true;
+    	}
 }

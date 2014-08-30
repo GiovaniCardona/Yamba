@@ -17,4 +17,7 @@
     <string name="action_tweet">action_tweet</string>
 	<string name="refresh">refresh</string>
 	<string name="purge">purge</string>
+	<string name="titlePrefs">titlePrefs</string>
+	<string name="titleRefresh">titleRefresh</string>
+	
 </resources>
